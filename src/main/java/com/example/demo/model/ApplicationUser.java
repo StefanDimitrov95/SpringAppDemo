@@ -11,11 +11,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class User implements UserDetails {
+public class ApplicationUser implements UserDetails {
+
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	private String userName;
+	private String username;
 	private String password;
 
 	@Override
@@ -52,6 +54,21 @@ public class User implements UserDetails {
 	public String getPassword() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getUserName() {
+		return username;
+	}
+	public void setUserName(String userName) {
+		this.username = userName;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 
