@@ -1,4 +1,4 @@
-package com.example.demo.security;
+package com.example.demo.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -34,12 +34,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public String findLoggedInUsername() {
 		// retrieve the currently logged in user name from the authentication request
-        Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
-        if (userDetails instanceof UserDetails) {
-            return ((UserDetails)userDetails).getUsername();
-        }
-
-        return null;
+        return SecurityContextHolder.getContext().getAuthentication().getName();
 	}
 
 }

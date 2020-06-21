@@ -3,19 +3,22 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Registration</title>
 </head>
 <body>
-    <form method="POST" th:action="@{/register}" id="registerForm">
+    <form method="POST" th:action="@{/register}" id="registerForm" enctype="utf8" th:object="${user}">
     
         <label for="username">Username: </label>
-        <input type="text" name="username"/><br/>
-
+        <input th:field="*{username}" type="text" name="username"/><br/>
+        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" th:text="${error}">Validation error</p>
+           
         <label for="password">Password: </label>
-        <input type="password" name="password"/><br/>
+        <input th:field="*{password}" type="password" name="password"/><br/>
+        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:text="${error}">Validation error</p>
 
         <label for="confirm">Confirm password: </label>
-        <input type="password" name="confirm"/><br/>
+        <input th:field="*{confirmPassword}" type="password" name="confirm"/><br/>
+        <p th:if="${#fields.hasErrors('global')}" th:errors="*{global}" th:text="${error}">Validation error</p>
         
         <input type="submit" value="Register"/>
     </form>

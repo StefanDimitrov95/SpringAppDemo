@@ -1,4 +1,4 @@
-package com.example.demo.security;
+package com.example.demo.services;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -11,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.data.ApplicationUserRepository;
-import com.example.demo.model.ApplicationUser;
+import com.example.demo.entities.ApplicationUser;
+import com.example.demo.repositories.ApplicationUserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

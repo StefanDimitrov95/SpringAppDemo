@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Home page</title>
 </head>
 <body>
 	<h1>Welcome!</h1>
-    <p>Click 
+	<h2 sec:authorize="isAuthenticated()">It appears you are already logged in!</h2>
+	<p sec:authorize="isAuthenticated()">Click 
+      <a th:href="@{/products}">here</a> to go to the products page or <a th:href="@{/logout}">here</a> to logout.
+    </p>
+    <p sec:authorize="isAnonymous()">Click 
       <a th:href="@{/login}">here</a> to login or <a th:href="@{/register}">here</a> to register.
     </p>
 </body>

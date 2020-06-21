@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+	<title>Products</title>
 </head>
 <body>
-<h1>Products:</h1>
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Price</th>
-		<th>Quantity</th>
-	</tr>
-	<tr th:each="product: ${products}">
-		<td th:text="${product.name}">NAME</td>
-		<td th:text="'€'+${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}">PRICE</td>
-		<td th:text="'-'+${product.quantity}+'+'">QUANTITY</td>
-		
-</table>
+	<h2 th:text="${user}"></h2>
+	<a th:href="@{/logout}">Logout</a>
+	<h1>Products:</h1>
+	<table border=1>
+		<tr>
+			<th>Name</th>
+			<th>Price</th>
+			<th sec:authorize="hasAuthority('ADMIN')"></th>
+			<th>Quantity</th>
+			<th sec:authorize="hasAuthority('ADMIN')"></th>
+		</tr>
+		<tr th:each="product: ${products}">
+			<td th:text="${product.name}">NAME</td>
+			<td th:text="'€'+${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}">PRICE</td>
+			<td sec:authorize="hasAuthority('ADMIN')"> <input type="button" th:attr="onclick=|subtractQuantity('${product.id}')|" value="-"/></td>
+			<td th:attr="id=|quantity_${product.id}|" th:text="${product.quantity}" style='text-align:center'>QUANTITY</td>
+			<td sec:authorize="hasAuthority('ADMIN')"> <input type="button" th:attr="onclick=|addQuantity('${product.id}')|" value="+"/></td>
+		</tr>
+	</table>
 </body>
 </html>
