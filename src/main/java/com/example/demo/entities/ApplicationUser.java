@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class ApplicationUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String username;
 	private String password;
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -32,11 +32,11 @@ public class ApplicationUser {
 		roles = new HashSet<>();
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
