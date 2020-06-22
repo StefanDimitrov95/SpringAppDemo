@@ -13,21 +13,28 @@ public class ProductServiceImpl implements ProductService {
 	ProductRepository productRepo;
 
 	public Iterable<Product> findAll() {
+		
 		return productRepo.findAll();
 	}
 	
 	@Override
 	public void addQuantity(Long id) {
-		Product product = productRepo.findById(id).get().addQuantity();
 		
+		Product product = productRepo.findById(id).get().addQuantity();
 		productRepo.save(product);	
 	}
 
 	@Override
 	public void subtractQuantity(Long id) {
-		Product product = productRepo.findById(id).get().subtractQuantity();
 		
+		Product product = productRepo.findById(id).get().subtractQuantity();
 		productRepo.save(product);			
+	}
+
+	@Override
+	public void deleteById(Long id) {	
+		
+		productRepo.deleteById(id);
 	}
 
 	

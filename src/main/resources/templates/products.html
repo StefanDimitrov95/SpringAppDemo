@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 	<title>Products</title>
 </head>
+<style>
+	table tr td:last-child {
+		border: none;
+	}
+</style>
 <body>
 	<h2 th:text="${user}"></h2>
 	<a th:href="@{/}">Home</a><br/>
@@ -31,6 +36,11 @@
 			<td sec:authorize="hasAuthority('ADMIN')"> 
 		        <form method="POST" th:action="@{/products/{id}/add(id=${product.id})}">
 		            <button type="submit" name="submit" value="value" class="link-button">+</button>
+		        </form>
+		    </td>
+		    	<td sec:authorize="hasAuthority('ADMIN')"> 
+		        <form method="POST" th:action="@{/products/{id}/delete(id=${product.id})}" th:if="${product.quantity == 0}">
+		            <button type="submit" name="submit" value="value" class="link-button">Delete</button>
 		        </form>
 		    </td>
 		</tr>
