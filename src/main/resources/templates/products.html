@@ -8,8 +8,8 @@
 </head>
 <body>
 	<h2 th:text="${user}"></h2>
-	<a th:href="@{/}">Home</a>
-	<a th:href="@{/logout}" style="margin-left:2em">Logout</a>
+	<a th:href="@{/}">Home</a><br/>
+	<a th:href="@{/logout}">Logout</a>
 	<h1>Products:</h1>
 	<table border=1>
 		<tr>
@@ -22,9 +22,17 @@
 		<tr th:each="product: ${products}">
 			<td th:text="${product.name}">NAME</td>
 			<td th:text="'€'+${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}">PRICE</td>
-			<td sec:authorize="hasAuthority('ADMIN')"> <input type="button" th:attr="onclick=|subtractQuantity('${product.id}')|" value="-"/></td>
+			<td sec:authorize="hasAuthority('ADMIN')"> 
+		        <form method="POST" th:action="@{/products/{id}/subtract(id=${product.id})}">
+		            <button type="submit" name="submit" value="value" class="link-button">-</button>
+		        </form>
+		    </td>
 			<td th:attr="id=|quantity_${product.id}|" th:text="${product.quantity}" style='text-align:center'>QUANTITY</td>
-			<td sec:authorize="hasAuthority('ADMIN')"> <input type="button" th:attr="onclick=|addQuantity('${product.id}')|" value="+"/></td>
+			<td sec:authorize="hasAuthority('ADMIN')"> 
+		        <form method="POST" th:action="@{/products/{id}/add(id=${product.id})}">
+		            <button type="submit" name="submit" value="value" class="link-button">+</button>
+		        </form>
+		    </td>
 		</tr>
 	</table>
 </body>

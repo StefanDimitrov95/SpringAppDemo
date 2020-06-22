@@ -61,6 +61,16 @@ public class Product {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+	
+	public Product subtractQuantity() {
+		this.quantity = Math.max(0, --this.quantity);
+		return this;
+	}
+
+	public Product addQuantity() {
+		this.quantity++;
+		return this;
+	}
 
 	@Override
 	public String toString() {
