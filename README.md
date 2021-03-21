@@ -1,1 +1,1 @@
-A simple demo project showcasing Spring
+A simple demo project showcasing Spring. (used for internal interview)
